@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+<div class="container">
+    <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
+      <div class="col-md-9 ftco-animate pb-5">
+        <h1 class="mb-3 bread">Blog</h1>
+        <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Blog <i class="ion-ios-arrow-forward"></i></span></p>
+      </div>
+    </div>
+  </div>
+</section>
+   
+    <section class="ftco-section">
+  <div class="container">
+    <div class="row d-flex">
+      {% for item in blog_single %}
+      <div class="col-md-4 d-flex ftco-animate">
+          <div class="blog-entry justify-content-end">
+          <a href="{% url 'blogSingle' item.id %}" class="block-20" style="background-image: url({{item.image.url}});">
+          </a>
+          <div class="text pt-4">
+              <div class="meta mb-3">
+              <div><a href="#">{{item.date}}</a></div>
+              <div><a href="#">{{item.posted_by}}</a></div>
+              
+            </div>
+            <h3 class="heading mt-2"><a href="#">{{item.heading}}</a></h3>
+            <p>{{item.description|linebreaks|truncatechars:200}}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      
+    </div>
+  
+  </div>
+</section>
+{% endblock %}
